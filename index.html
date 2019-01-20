@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>imageZoom js lib</title>
+
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="src/imageZoom.js"></script>
+
+</head>
+<body>
+<div style="text-align: center">
+    <h1>imageZoom js lib example</h1>
+    <p>You just need to add `zoom-js` class for your images</p>
+    <br>
+    <h2></h2>
+    <div style="max-width: 640px;margin: auto">
+    <pre style="background-color: #eee;text-align: left;color: #555;size: 1em;padding: 10px;">
+&lt;!-- Thumbnails with link to big size image in data-attribute `data-fullsize` --&gt;
+&lt;img src="https://picsum.photos/260/180?image=1068"
+   class="zoom-js"
+   data-fullsize="https://picsum.photos/1024/768?image=1068"
+/&gt;</pre>
+    </div>
+    <p>
+        <img src="https://res.cloudinary.com/demo/image/upload/w_350,h_200,c_crop/sample.jpg"
+            class="zoom-js"
+            data-fullsize="https://www.cs.umd.edu/~aporter/Tmp/bee.jpg"
+        />
+        &nbsp;
+        <img src="https://picsum.photos/250/150?image=1073"
+            class="zoom-js"
+            data-fullsize="https://picsum.photos/900/600?image=1073"
+        />
+    </p>
+    <p>
+        <img src="https://picsum.photos/260/180?image=1068"
+            class="zoom-js"
+            data-fullsize="https://picsum.photos/1024/768?image=1068"
+        />
+        &nbsp;
+        <img src="https://picsum.photos/320/260?image=1059"
+            class="zoom-js"
+            data-fullsize="https://picsum.photos/1600/1200?image=1059"
+        />
+    </p>
+    <br>
+    <br>
+    <h2>Thumbnails without link to big size image</h2>
+    <p>
+        <img src="https://res.cloudinary.com/demo/image/upload/w_350,h_200,c_crop/sample.jpg"
+             class="zoom-js"
+             style="width:300px;height:200px;"
+        />
+        &nbsp;
+        <img src="https://picsum.photos/250/150?image=1073"
+             class="zoom-js"
+         />
+    </p>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br><br><br>
+</div>
+
+
+</body>
+</html>
