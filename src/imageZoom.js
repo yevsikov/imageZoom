@@ -15,12 +15,16 @@
                 zoomedArea.attr('data-inx', ( currentThumb.position().left )) ;
                 zoomedArea.attr('data-iny', ( currentThumb.position().top )) ;
 
-                if( currentThumb.attr('data-fullsize') ) {
+                if ( currentThumb.attr('data-fullsize') ) {
                     var fullsizeImage = currentThumb.attr('data-fullsize');
                     zoomedArea.css('background-size', 'unset');
                 } else {
                     var fullsizeImage = currentThumb.attr('src');
-                    zoomedArea.css('background-size', '125%');
+                    if ( ((this.naturalHeight-margin)<=(currentThumb.height())) || ((this.naturalWidth-margin)<=(currentThumb.width())) ) {
+                         zoomedArea.css('background-size', (((margin*100)/currentThumb.height())+110)+'%' );
+                    } else {
+                        zoomedArea.css('background-size', 'unset');
+                    }
                 }
 
                 zoomedArea.css('background-image', 'url(' + fullsizeImage + ')');
