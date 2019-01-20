@@ -60,6 +60,10 @@
                     zoomedArea.css('background-position-y', positionY+'%' );
                 }
             });
+
+            $( window ).resize(function() {
+                zoomedArea.hide();
+            });
         } else {
             console.error('ERROR: #zoomedArea element is not found');
         }
