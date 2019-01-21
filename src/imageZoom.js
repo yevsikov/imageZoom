@@ -1,7 +1,9 @@
 (function ($) {
     $(document).ready(function () {
 
-        $('<div id="zoomedArea"></div>').appendTo('body');
+        if ($('#zoomedArea').length<1) {
+            $('<div id="zoomedArea" style="z-index:999;"></div>').appendTo('body');
+        }
         var zoomedElement = $('.zoom-js');
         var zoomedArea = $('#zoomedArea');
         var margin = 20;
@@ -10,10 +12,10 @@
             zoomedElement.hover(function( event ) {
                 var currentThumb = $(this);
 
-                zoomedArea.attr('data-outx', ( currentThumb.position().left+currentThumb.width() ));
-                zoomedArea.attr('data-outy', ( currentThumb.position().top+currentThumb.height() ));
-                zoomedArea.attr('data-inx', ( currentThumb.position().left )) ;
-                zoomedArea.attr('data-iny', ( currentThumb.position().top )) ;
+                zoomedArea.attr('data-outx', ( currentThumb.offset().left+currentThumb.width() ));
+                zoomedArea.attr('data-outy', ( currentThumb.offset().top+currentThumb.height() ));
+                zoomedArea.attr('data-inx', ( currentThumb.offset().left )) ;
+                zoomedArea.attr('data-iny', ( currentThumb.offset().top )) ;
 
                 if ( currentThumb.attr('data-fullsize') ) {
                     var fullsizeImage = currentThumb.attr('data-fullsize');
@@ -32,8 +34,8 @@
 
                 zoomedArea.css('background-image', 'url(' + fullsizeImage + ')');
 
-                zoomedArea.css('top',  currentThumb.position().top-margin );
-                zoomedArea.css('left', currentThumb.position().left-margin  );
+                zoomedArea.css('top',  currentThumb.offset().top-margin );
+                zoomedArea.css('left', currentThumb.offset().left-margin  );
                 zoomedArea.css('height',  currentThumb.height()+margin*2 );
                 zoomedArea.css('width', currentThumb.width()+margin*2  );
 
