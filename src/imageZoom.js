@@ -21,7 +21,8 @@
                 } else {
                     var fullsizeImage = currentThumb.attr('src');
                     if ( ((this.naturalHeight-margin)<=(currentThumb.height())) || ((this.naturalWidth-margin)<=(currentThumb.width())) ) {
-                         zoomedArea.css('background-size', (((margin*100)/currentThumb.height())+110)+'%' );
+                        currentThumb.height( ( currentThumb.height()>0 ) ? currentThumb.height() : 1 );
+                        zoomedArea.css('background-size', (((margin*100)/currentThumb.height())+110)+'%' );
                     } else {
                         zoomedArea.css('background-size', 'unset');
                     }
