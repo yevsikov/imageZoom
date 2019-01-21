@@ -1,6 +1,6 @@
 /* 
 Name: imageZoom js lib 
-Last update: 2019-01-21 11:36
+Last update: 2019-01-21 13:02
 Link: https://github.com/yevsikov/imageZoom
 */
 (function ( $ ) {
