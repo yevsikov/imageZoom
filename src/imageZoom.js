@@ -28,6 +28,8 @@
                     }
                 }
 
+                zoomedArea.attr('data-callback', ( currentThumb.attr('data-callback') ? currentThumb.attr('data-callback'): '') ) ;
+
                 zoomedArea.css('background-image', 'url(' + fullsizeImage + ')');
 
                 zoomedArea.css('top',  currentThumb.position().top-margin );
@@ -55,6 +57,7 @@
                     ( (event.pageX+margin)<zoomedArea.attr('data-inx') )
                 ) {
                     zoomedArea.hide();
+                    zoomedArea.attr('data-callback', '' ) ;
                 } else {
                     var fullX = zoomedArea.attr('data-outx')-zoomedArea.attr('data-inx')+margin*2;
                     var positionX =  (( event.pageX - zoomedArea.attr('data-inx')+margin )*100)/fullX;
@@ -68,6 +71,7 @@
 
             $( window ).resize(function() {
                 zoomedArea.hide();
+                zoomedArea.attr('data-callback', '' ) ;
             });
         } else {
             console.error('ERROR: #zoomedArea element is not found');

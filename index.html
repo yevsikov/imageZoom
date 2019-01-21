@@ -37,11 +37,13 @@
             class="zoom-js"
             alt="Image from https://picsum.photos/"
             data-fullsize="https://picsum.photos/1200/960?image=1044"
+            data-callback="Forest"
         />
         &nbsp;
         <img src="https://picsum.photos/250/200?image=1073"
             class="zoom-js"
             data-fullsize="https://picsum.photos/1024/768?image=1073"
+            data-callback="Books"
         />
     </p>
     <p>
@@ -79,13 +81,15 @@
     </div>
     <p>
         <img src="https://picsum.photos/620/400?image=433"
-             class="zoom-js"
-             style="width:310px;height:200px"
+            class="zoom-js"
+            style="width:310px;height:200px"
+            data-callback="Bear"
         />
         &nbsp;
         <img src="https://picsum.photos/580/400?image=183"
              class="zoom-js"
              style="width:290px;height:200px"
+            data-callback="Car"
         />
     </p>
     <p>
@@ -108,6 +112,26 @@
     </div>
     <br>
     <br>
+    <p>Callback using</p>
+    <div style="max-width:615px;margin:auto">
+        <pre style="background-color:#eee;text-align:left;color:#555;font-size:0.9em;padding:10px;">
+&lt;!-- Callback using --&gt;
+&lt;img src="https://picsum.photos/260/180?image=1068"
+   class="zoom-js"
+   data-fullsize="https://picsum.photos/1024/768?image=1068"
+   data-callback="https://unsplash.com/photos/iNmouRApXYM"
+/&gt;
+
+&lt;script&gt;
+    $(document).ready(function () {
+        $('#zoomedArea').click(function(){
+            console.log( $(this).attr('data-callback') );
+        });
+    });
+&lt;/script&gt;</pre>
+    </div>
+    <br>
+    <br>
     <p>Wordpress example</p>
     <div style="max-width:615px;margin:auto">
         <pre style="background-color:#eee;text-align:left;color:#555;font-size:0.9em;padding:10px;">
@@ -125,7 +149,14 @@
     <a href="https://github.com/yevsikov/imageZoom">https://github.com/yevsikov/imageZoom</a>
     <br>
 </div>
-
-
+<script>
+    $(document).ready(function () {
+        $('#zoomedArea').click(function(){
+            if($(this).attr('data-callback')){
+                console.log( 'Data from image: ' + $(this).attr('data-callback') );
+            }
+        }); 
+    });
+</script>
 </body>
 </html>
