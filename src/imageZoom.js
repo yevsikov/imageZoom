@@ -1,18 +1,19 @@
 /* 
 Name: imageZoom js lib 
-Last update: 2019-01-21 13:02
+Last update: 2019-01-22 09:53
 Link: https://github.com/yevsikov/imageZoom
 */
 (function ( $ ) {
     $( document ).ready(function () {
+        const defaultMargin = 20;
         //if zoomedArea element is missing -  create new
         if ( $( '#zoomedArea' ).length<1 ) {
-            $( '<div id="zoomedArea" style="z-index:999;"></div>' ).appendTo( 'body' );
+            $( '<div id="zoomedArea" style="z-index:999;" data-margin="' + defaultMargin + '"></div>' ).appendTo( 'body' );
         }
         var zoomedElement = $( 'img.zoom-js' );
         var zoomedArea = $( '#zoomedArea' );
         //set margin for zoomedArea
-        var margin = 20;
+        var margin = zoomedArea.attr( 'data-margin' ) ? parseInt(zoomedArea.attr( 'data-margin' )) : defaultMargin;
         //if images for zooming found - make some action for its hover
         if ( zoomedElement.length > 0 ) {
             zoomedElement.hover(function() {
