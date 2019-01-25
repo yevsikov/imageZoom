@@ -1,6 +1,6 @@
 /* 
 Name: imageZoom js lib 
-Last update: 2019-01-22 09:53
+Last update: 2019-01-25 18:21
 Link: https://github.com/yevsikov/imageZoom
 */
 (function ( $ ) {
@@ -19,10 +19,12 @@ Link: https://github.com/yevsikov/imageZoom
             zoomedElement.hover(function() {
                 var currentThumb = $(this);
                 //get coordinates of current image for zoomedArea hiding
-                zoomedArea.attr( 'data-outx', ( currentThumb.offset().left+currentThumb.width() ) );
-                zoomedArea.attr( 'data-outy', ( currentThumb.offset().top+currentThumb.height() ) );
-                zoomedArea.attr( 'data-inx', ( currentThumb.offset().left ) ) ;
-                zoomedArea.attr( 'data-iny', ( currentThumb.offset().top ) ) ;
+                zoomedArea.attr({
+                    'data-outx' : currentThumb.offset().left+currentThumb.width(),
+                    'data-outy' : currentThumb.offset().top+currentThumb.height(),
+                    'data-inx' : currentThumb.offset().left,
+                    'data-iny' : currentThumb.offset().top 
+                });
                 //if fullsize image doesn't set - use the same image, but with some css zoom
                 if ( currentThumb.attr('data-fullsize') ) {
                     var fullsizeImage = currentThumb.attr( 'data-fullsize' );
@@ -39,12 +41,14 @@ Link: https://github.com/yevsikov/imageZoom
                 //get callback data if exists
                 zoomedArea.attr( 'data-callback', ( currentThumb.attr('data-callback') ? currentThumb.attr('data-callback'): '') ) ;
                 //change styles for zoomedArea (bg, coords, position)
-                zoomedArea.css( 'background-image', 'url(' + fullsizeImage + ')' );
-                zoomedArea.css( 'top',  currentThumb.offset().top-margin );
-                zoomedArea.css( 'left', currentThumb.offset().left-margin  );
-                zoomedArea.css( 'height',  currentThumb.height()+margin*2 );
-                zoomedArea.css( 'width', currentThumb.width()+margin*2  );
-                zoomedArea.css( 'position', 'absolute'  );
+                zoomedArea.css({
+                    'background-image' : 'url(' + fullsizeImage + ')',
+                    'top' : currentThumb.offset().top-margin,
+                    'left' : currentThumb.offset().left-margin,
+                    'height' : currentThumb.height()+margin*2,
+                    'width' : currentThumb.width()+margin*2,
+                    'position' : 'absolute'  
+                });
                 //show zoomedArea
                 zoomedArea.show();
             });
