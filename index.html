@@ -14,6 +14,11 @@
         body {
             font-family: 'Roboto Condensed', sans-serif;
         }
+        
+        p {
+            margin: 8px auto;
+        }
+        
         pre {
             background-color: #eee;
             text-align: left;
@@ -22,32 +27,60 @@
             padding: 10px;
             overflow: auto;
         }
+        
         .pre-wrapper {
             max-width:615px;
             margin:auto
         }
+        
         .pre-comments {
             color: #bbb;
         }
+        
         .pre-php {
             color: #7c5490;;
         }
+        
         a {
             color: #555;
         }
+        
         .custom-area {
             border: 1px dashed #fff;
             border-radius: 25px;
             cursor: crosshair;
             z-index: 1000;
         }
+        
         .custom-area-clickable {
             cursor: pointer;
             box-shadow: #9E9E9E 1px 1px 10px 5px;
             z-index: 1000;
         }
+        
         .cached-img {
             display: none;
+        }
+        .custom-size-1 {
+            width:310px;
+            height:200px;
+        }
+
+        .custom-size-2 {
+            width:290px;
+            height:200px;
+        }
+        
+        @media only screen and (max-width: 640px) {
+            .custom-size-1, .custom-size-2 {
+                height: unset;
+            }
+            
+            p > img {
+                max-width: 85%;
+                height: auto;
+            }
+            
         }
     </style>
 </head>
@@ -55,7 +88,7 @@
 <div style="text-align: center">
     <h1>imageZoom js lib example</h1>
     <p>You just need to add `zoom-js` class for your images</p>
-    <p style="text-align:right;width:610px;margin:auto;font-size:0.8em;color:#999;">* required: jQuery</p>
+    <p style="text-align:right;max-width:610px;margin:auto;font-size:0.8em;color:#999;">* required: jQuery</p>
     <p>Setup</p>
     <div class="pre-wrapper">
         <pre>
@@ -121,20 +154,16 @@
     </div>
     <p>
         <img src="https://picsum.photos/620/400?image=433"
-            class="zoom-js"
-            style="width:310px;height:200px"
-            data-callback="Bear"
+            class="zoom-js custom-size-1"
         />
         &nbsp;
         <img src="https://picsum.photos/580/400?image=183"
-             class="zoom-js"
-             style="width:290px;height:200px"
-            data-callback="Car"
+             class="zoom-js custom-size-2"
         />
     </p>
     <p>
         <img src="https://picsum.photos/610/200?image=694"
-             class="zoom-js"
+             class="zoom-js responsive-img"
         />
     </p>
     <br>
@@ -177,14 +206,14 @@
 &lt;img src="https://picsum.photos/260/180?image=1068"
    class="zoom-js"
    data-fullsize="https://picsum.photos/1024/768?image=1068"
-   data-callback="https://unsplash.com/photos/iNmouRApXYM"
+   data-callback="Action One"
 /&gt;
 
 &lt;script&gt;
     $(document).ready(function () {
         $('#zoomedArea').click(function() {
-            <span class="pre-comments">//<span class="pre-php">TODO:</span> start working with `$(this).attr('data-callback')`</span>
-            console.log( $(this).attr('data-callback') );
+            <span class="pre-comments">//<span class="pre-php">TODO:</span> start working with `data-callback` attribute</span>
+            alert( $(this).attr('data-callback') );
         });
     });
 &lt;/script&gt;</pre>
