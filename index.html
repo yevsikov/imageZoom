@@ -35,6 +35,17 @@
         a {
             color: #555;
         }
+        .custom-area {
+            border: 1px dashed #fff;
+            border-radius: 25px;
+            cursor: crosshair;
+            z-index: 1000;
+        }
+        .custom-area-clickable {
+            cursor: pointer;
+            box-shadow: #9E9E9E 1px 1px 10px 5px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -65,13 +76,11 @@
             class="zoom-js"
             alt="Image from https://picsum.photos/"
             data-fullsize="https://picsum.photos/1200/960?image=1044"
-            data-callback="Forest"
         />
         &nbsp;
         <img src="https://picsum.photos/250/200?image=1073"
             class="zoom-js"
             data-fullsize="https://picsum.photos/1024/768?image=1073"
-            data-callback="Books"
         />
     </p>
     <p>
@@ -133,13 +142,27 @@
 <span class="pre-comments">&lt;!-- Custom styles --&gt;</span>
 &lt;style&gt;
     #zoomedArea {
-        border: 2px solid black;
-        cursor: grab;
+        border: 1px dashed #fff;
+        border-radius: 25px;
+        cursor: crosshair;
         z-index: 1000;
     }
 &lt;/style&gt;
 &lt;div id="zoomedArea" data-margin="30"&gt;&lt;/div&gt;</pre>
     </div>
+    <p>
+        <img src="https://picsum.photos/350/200?image=20"
+            class="zoom-js custom-style-js"
+            alt="Image from https://picsum.photos/"
+            data-fullsize="https://picsum.photos/960/600?image=20"
+        />
+        &nbsp;
+        <img src="https://picsum.photos/250/200?image=200"
+            class="zoom-js custom-style-js"
+            alt="Image from https://picsum.photos/"
+            data-fullsize="https://picsum.photos/960/600?image=200"
+        />
+    </p>
     <br>
     <br>
     <p>Callback using</p>
@@ -154,12 +177,32 @@
 
 &lt;script&gt;
     $(document).ready(function () {
-        $('#zoomedArea').click(function(){
+        $('#zoomedArea').click(function() {
+            <span class="pre-comments">//<span class="pre-php">TODO:</span> start working with `$(this).attr('data-callback')`</span>
             console.log( $(this).attr('data-callback') );
         });
     });
 &lt;/script&gt;</pre>
     </div>
+    <p>
+    <img src="https://picsum.photos/197/200?image=50"
+        class="zoom-js custom-style-clickable-js"
+        data-fullsize="https://picsum.photos/600/600?image=50"
+        data-callback="Action One"
+    />
+    &nbsp;
+    <img src="https://picsum.photos/197/200?image=555"
+        class="zoom-js custom-style-clickable-js"
+        data-fullsize="https://picsum.photos/600/600?image=555"
+        data-callback="Action Two"
+    />
+    &nbsp;
+    <img src="https://picsum.photos/197/200?image=513"
+        class="zoom-js custom-style-clickable-js"
+        data-fullsize="https://picsum.photos/600/600?image=513"
+        data-callback="Action Three"
+    />
+    </p>
     <br>
     <br>
     <p>Wordpress example</p>
@@ -182,11 +225,47 @@
     <a href="https://github.com/yevsikov/imageZoom">https://github.com/yevsikov/imageZoom</a>
     <br>
 </div>
-<script>
+    <script>
     $(document).ready(function () {
-        $('#zoomedArea').click(function(){
-            if($(this).attr('data-callback')){
-                console.log( 'Data from image: ' + $(this).attr('data-callback') );
+    
+        var $zoom = $('.zoom-js');
+        var $customStyleElement = $('.custom-style-js');
+        var $customStyleClickableElement = $('.custom-style-clickable-js');
+        
+        console.log($customStyleClickableElement);
+        
+        $zoom.on('mouseenter', function(){
+            if ($( '#zoomedArea' ).hasClass('custom-area')) {
+                $( '#zoomedArea' ).removeClass('custom-area');
+            }
+            if ($( '#zoomedArea' ).hasClass('custom-area-clickable')) {
+                $( '#zoomedArea' ).removeClass('custom-area-clickable');
+            }
+        });
+        
+        $customStyleElement.on('mouseenter', function() {
+            if ($( '#zoomedArea' ).hasClass('custom-area-clickable')) {
+                $( '#zoomedArea' ).removeClass('custom-area-clickable');
+            }
+            
+            if (!$( '#zoomedArea' ).hasClass('custom-area')) {
+                $( '#zoomedArea' ).addClass('custom-area');
+            }
+        });        
+        
+        $customStyleClickableElement.on('mouseenter', function() {
+            if ($( '#zoomedArea' ).hasClass('custom-area')) {
+                $( '#zoomedArea' ).removeClass('custom-area');
+            }
+            
+            if (!$( '#zoomedArea' ).hasClass('custom-area-clickable')) {
+                $( '#zoomedArea' ).addClass('custom-area-clickable');
+            }
+        });
+    
+        $('#zoomedArea').click(function() {
+            if ($(this).attr('data-callback')) {
+                alert( $(this).attr('data-callback') );
             }
         }); 
     });
