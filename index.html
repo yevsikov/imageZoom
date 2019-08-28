@@ -46,6 +46,9 @@
             box-shadow: #9E9E9E 1px 1px 10px 5px;
             z-index: 1000;
         }
+        .cached-img {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -163,6 +166,8 @@
             data-fullsize="https://picsum.photos/960/600?image=200"
         />
     </p>
+    <img src="https://picsum.photos/960/600?image=20" class="cached-img" />
+    <img src="https://picsum.photos/960/600?image=200" class="cached-img" />
     <br>
     <br>
     <p>Callback using</p>
@@ -202,6 +207,10 @@
         data-fullsize="https://picsum.photos/600/600?image=513"
         data-callback="Action Three"
     />
+
+    <img src="https://picsum.photos/600/600?image=50" class="cached-img" />
+    <img src="https://picsum.photos/600/600?image=555" class="cached-img" />
+    <img src="https://picsum.photos/197/200?image=513" class="cached-img" />
     </p>
     <br>
     <br>
